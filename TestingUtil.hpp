@@ -5,7 +5,7 @@
 #include <boost/test/unit_test.hpp>
 
 namespace util {
-
+    
 /************************************************\
 | Useful functions and flags related to testing. |
 \************************************************/
