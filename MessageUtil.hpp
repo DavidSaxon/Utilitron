@@ -16,9 +16,18 @@ namespace msg {
 @message the message to print*/
 inline void primary(std::ostream& output, const std::string& message) {
 
+    //print out the top bar
+    output << "/++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" <<
+        "++++++++++++++++++\\" << std::endl;
+
     output << message << std::endl;
+
+    //print out the bottom bar
+    output << "\\+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++" <<
+        "+++++++++++++++++++/" << std::endl;
 }
 
 } } //util //msg
 
 #endif
+
