@@ -13,8 +13,8 @@ namespace str {
 
 //FUNCTIONS
 /*!Concatenates the second string in front of the first string
-@param a the string to be extended
-@param the string to concatenate on to the front of the other string*/
+@a the string to be extended
+@b the string to concatenate on to the front of the other string*/
 inline void concatenateFront(std::string& a, const std::string& b) {
 
     //create a new string stream
@@ -27,8 +27,8 @@ inline void concatenateFront(std::string& a, const std::string& b) {
 }
 
 /*!Concatenates the second string on to the end of the first string
-@param a the string to be extended
-@param the string to concatenate on to the end of the other string*/
+@a the string to be extended
+@b the string to concatenate on to the end of the other string*/
 inline void concatenateBack(std::string& a, const std::string& b) {
 
     //create a new string stream
@@ -42,8 +42,8 @@ inline void concatenateBack(std::string& a, const std::string& b) {
 
 /*!Generates a string containing the given amount of characters
 the given number of times
-@param c the character to repeat
-@param n the number of times to repeat the character
+@c the character to repeat
+@n the number of times to repeat the character
 @return the generated string*/
 inline std::string generateRepeat(char c, unsigned n) {
 

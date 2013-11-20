@@ -2,11 +2,12 @@
 
 #ifdef STRING
 
+#include "FunctionUtil.hpp"
 #include "StringUtil.hpp"
 #include "TestingUtil.hpp"
 
-//VARIABLES
 
+//FUNCTIONS
 /*!Functions that tests the centre method*/
 inline void centreTest() {
 
@@ -22,13 +23,15 @@ BOOST_AUTO_TEST_CASE(message_util_tests) {
 
     std::string tester = "Hello World";
 
+    //TODO:tertiary message
+
     //TODO: secondary message
 
     unsigned numOfLines = util::str::centre(tester, 80);
 
     if (numOfLines == 1) {
 
-        //check that the string is that many characters long long
+        util::func::repeatFunction(centreTest, 100);
     }
 }
 

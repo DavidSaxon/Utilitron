@@ -12,9 +12,16 @@ BOOST_AUTO_TEST_CASE(message_util_tests) {
     std::cout << "Testing Message Utilities" << std::endl;
     std::cout << "--------------------------" << std::endl;
 
-    //basically we are just going to print each type and make
-    //sure nothing goes wrong
+
     util::msg::primary(std::cout, "Primary");
+
+    std::cout << std::endl;
+
+    util::msg::secondary(std::cout, "Secondary");
+
+    std::cout << std::endl;
+
+    util::msg::tertiary(std::cout, "Tertiary");
 }
 
 #endif
