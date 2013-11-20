@@ -8,9 +8,7 @@
 /*!Tests for all Utilities exceptions*/
 BOOST_AUTO_TEST_CASE(message_util_tests) {
 
-    std::cout << "--------------------------" << std::endl;
-    std::cout << "Testing Message Utilities" << std::endl;
-    std::cout << "--------------------------" << std::endl;
+    util::test::primary(std::cout, "Testing Message Utilities");
 
 
     util::msg::primary(std::cout, "Primary");

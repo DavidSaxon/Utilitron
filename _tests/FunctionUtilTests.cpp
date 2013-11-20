@@ -4,6 +4,8 @@
 
 #ifdef FUNCTION
 
+#include <sstream>
+
 #include "FunctionUtil.hpp"
 #include "TestingUtil.hpp"
 
@@ -22,10 +24,13 @@ inline void repeatNoArgsTestFunction() {
 /*!Tests the repeatFunction function with no arguments*/
 inline void repeatNoArgsTest() {
 
-    //TODO: tertiary message
-
     //generate a random number of times to test the repeater
     unsigned n = rand() % 10000;
+
+    std::stringstream ss;
+    ss << "Repeating function " << n << " times";
+
+    util::test::tertiary(std::cout, ss.str());
 
     //zero the counter
     gCounter = 0;
@@ -39,14 +44,13 @@ inline void repeatNoArgsTest() {
 /*!Tests for all Utilities exceptions*/
 BOOST_AUTO_TEST_CASE(message_util_tests) {
 
-    std::cout << "--------------------------" << std::endl;
-    std::cout << "Testing Function Utilities" << std::endl;
-    std::cout << "--------------------------" << std::endl;
+    util::test::primary(std::cout, "Testing Function Utilities");
 
     //seed the random number generator
     srand(time(NULL));
 
-    //TODO: secondary message
+    util::test::secondary(std::cout,
+        "Testing repeatFunction with no arguments");
 
     for (unsigned i = 0; i < TESTING_CYCLES; ++i) {
 
