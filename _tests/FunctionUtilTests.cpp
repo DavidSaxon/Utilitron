@@ -1,9 +1,8 @@
-#include <cstdlib>
-
 #include "_tests/DefineTestSuite.hpp"
 
 #ifdef FUNCTION
 
+#include <cstdlib>
 #include <sstream>
 
 #include "FunctionUtil.hpp"
@@ -13,15 +12,12 @@
 //the global counter variable
 unsigned gCounter = 0;
 
-
-/*!Functions that tests the centre method*/
 inline void repeatNoArgsTestFunction() {
 
     //increment the global counter
     ++gCounter;
 }
 
-/*!Tests the repeatFunction function with no arguments*/
 inline void repeatNoArgsTest() {
 
     //generate a random number of times to test the repeater
