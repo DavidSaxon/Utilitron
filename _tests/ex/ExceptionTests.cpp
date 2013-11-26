@@ -2,6 +2,7 @@
 
 #ifdef EXCEPTION
 
+#include "exceptions/Exception.hpp"
 #include "TestingUtil.hpp"
 
 /*!Tests for all Utilities exceptions*/

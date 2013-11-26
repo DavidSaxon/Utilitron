@@ -1,6 +1,7 @@
 #ifndef UTILITRON_STRINGUTIL_H_
 #   define UTILITRON_STRINGUTIL_H_
 
+#include <boost/lexical_cast.hpp>
 #include <iostream>
 #include <sstream>
 
@@ -12,6 +13,46 @@ namespace util {
 namespace str {
 
 //FUNCTIONS
+/*!Converts the given value to a string
+@value the value to convert
+@return the string of the value*/
+template<typename T>
+inline std::string convert(T value) {
+
+    std::string s = boost::lexical_cast<std::string>(value);
+
+    return s;
+}
+
+/*!@Overload*/
+template<>
+inline std::string convert(bool value) {
+
+    if (value) {
+
+        return "true";
+    }
+
+    return "false";
+}
+
+/*!Concantenates the given array of strings into one string
+@strings the strings to concatenate
+@n the number of strings
+@return the result of the concatenation*/
+inline std::string concatenate(std::string strings[], unsigned n) {
+
+    std::stringstream ss;
+
+    //add the strings
+    for (unsigned i = 0; i < n; ++i) {
+
+        ss << strings[i];
+    }
+
+    return ss.str();
+}
+
 /*!Concatenates the second string in front of the first string
 @a the string to be extended
 @b the string to concatenate on to the front of the other string*/

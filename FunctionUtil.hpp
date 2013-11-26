@@ -23,6 +23,18 @@ inline void repeatFunction(void (*function)(), unsigned n) {
     }
 }
 
+/*!Calls the given function the given number of times passing the function
+the provided argument
+@function the function to call
+@argument the argument to use
+@n the number of times to call the function*/
+inline void repeatFunction(void (*function)(void* v), void* argument, unsigned n) {
+
+    for (unsigned i = 0; i < n; ++i) {
+
+        function(argument);
+    }
+}
 
 } } //util //func
 
