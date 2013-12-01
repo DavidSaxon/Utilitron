@@ -242,19 +242,19 @@ public:
 
     //PUBLIC MEMBER FUNCTIONS
     /*!@return a copy of this vector*/
-    inline Vector2 xy() {
+    inline Vector2 xy() const {
 
         return Vector2(x, y);
     }
 
     /*!@return a new 2d vector with the x and y components reversed*/
-    inline Vector2 yx() {
+    inline Vector2 yx() const {
 
         return Vector2(y, x);
     }
 
     /*!@return a copy of this vector*/
-    inline Vector2 clone() {
+    inline Vector2 clone() const {
 
         return Vector2(x, y);
     }
@@ -271,7 +271,7 @@ public:
         return Vector2(1, 0);
     }
 
-    /*!@return the x axis vector*/
+    /*!@return the y axis vector*/
     inline static Vector2 yAxis() {
 
         return Vector2(0, 1);
@@ -563,6 +563,107 @@ public:
     }
 
     //PUBLIC MEMBER FUNCTIONS
+    /*!@returns a new 2d vector of the x and y components of this vector*/
+    inline Vector2 xy() const {
+
+        return Vector2(x, y);
+    }
+
+    /*!@returns a new 2d vector of the y and x components of this vector*/
+    inline Vector2 yx() const {
+
+        return Vector2(y, x);
+    }
+
+    /*!@returns a new 2d vector of the y and z components of this vector*/
+    inline Vector2 yz() const {
+
+        return Vector2(y, z);
+    }
+
+    /*!@returns a new 2d vector of the z and y components of this vector*/
+    inline Vector2 zy() const {
+
+        return Vector2(z, y);
+    }
+
+    /*!@returns a new 2d vector of the x and z components of this vector*/
+    inline Vector2 xz() const {
+
+        return Vector2(x, z);
+    }
+
+    /*!@returns a new 2d vector of the x and z components of this vector*/
+    inline Vector2 zx() const {
+
+        return Vector2(z, x);
+    }
+
+    /*!@returns a copy of this vector*/
+    inline Vector3 xyz() const {
+
+        return Vector3(x, y, z);
+    }
+
+    /*!@returns new 3d vector from the x, z, and y components*/
+    inline Vector3 xzy() const {
+
+        return Vector3(x, z, y);
+    }
+
+    /*!@returns new 3d vector from the y, x, and z components*/
+    inline Vector3 yxz() const {
+
+        return Vector3(y, x, z);
+    }
+
+    /*!@returns new 3d vector from the y, z, and x components*/
+    inline Vector3 yzx() const {
+
+        return Vector3(y, z, x);
+    }
+
+    /*!@returns new 3d vector from the z, x, and y components*/
+    inline Vector3 zxy() const {
+
+        return Vector3(z, x, y);
+    }
+
+    /*!@returns new 3d vector from the z, y, and x components*/
+    inline Vector3 zyx() const {
+
+        return Vector3(z, y, x);
+    }
+
+    /*!@returns a copy of this vector*/
+    inline Vector3 clone() const {
+
+        return Vector3(x, y, z);
+    }
+
+    /*!@return the zero three dimensional vector*/
+    inline static Vector3 zero() {
+
+        return Vector3(0, 0, 0);
+    }
+
+    /*!@return the x axis vector*/
+    inline static Vector3 xAxis() {
+
+        return Vector3(1, 0, 0);
+    }
+
+    /*!@return the y axis vector*/
+    inline static Vector3 yAxis() {
+
+        return Vector3(0, 1, 0);
+    }
+
+    /*!@return the z axis vector*/
+    inline static Vector3 zAxis() {
+
+        return Vector3(0, 0, 1);
+    }
 };
 
 } } //util //vec
