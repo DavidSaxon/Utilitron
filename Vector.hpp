@@ -315,21 +315,6 @@ public:
         depth(z) {
     }
 
-    /*!Creates a new three dimensional vector by copying the values from
-    the given 2d vector and sets the z component to 0
-    @v2 the 2d vector to copy from*/
-    inline Vector3(const Vector2& v2) :
-        x(v2.x),
-        y(v2.y),
-        z(0),
-        r(x),
-        g(y),
-        b(z),
-        width(x),
-        height(y),
-        depth(z) {
-    }
-
     /*!Creates a new three dimensional vector by the copying the values from
     the given 3d vector
     @v3 the 3d vector to copy from*/
@@ -345,11 +330,239 @@ public:
         depth(z) {
     }
 
+    /*!Creates a new three dimensional vector by copying the x and y components
+    from the given 2d vector and the z component from the given value
+    @v2 the 2d vector to copy from
+    @aZ the z value of the vector*/
+    inline Vector3(const Vector2& v2, float aZ) :
+        x(v2.x),
+        y(v2.y),
+        z(aZ),
+        r(x),
+        g(y),
+        b(z),
+        width(x),
+        height(y),
+        depth(z) {
+    }
+
+    /*!Creates a new three dimensional from the given x value and copying
+    the y and z components from the given 2d vector
+    @aX the x value of the vector
+    @v2 the 2d vector to copy from*/
+    inline Vector3(float aX, const Vector2& v2) :
+        x(aX),
+        y(v2.x),
+        z(v2.y),
+        r(x),
+        g(y),
+        b(z),
+        width(x),
+        height(y),
+        depth(z) {
+    }
+
     //DESTRUCTOR
     /*!Destroys this vector*/
     inline ~Vector3() {
     }
 
+    //OPERATORS
+    /*!Sets the values of this vector by copying the values from the
+    other given vector
+    @other the vector to copy from*/
+    inline Vector3& operator =(const Vector3& other) {
+
+        x = other.x;
+        y = other.y;
+        z = other.z;
+
+        return *this;
+    }
+
+    /*!@return if this vector and the other given vector are equal*/
+    inline bool operator ==(const Vector3& other) const {
+
+        return x == other.x && y == other.y && z == other.z;
+    }
+
+    /*!@return if this vector and the other given vector are not equal*/
+    inline bool operator !=(const Vector3& other) const {
+
+        return !((*this) == other);
+    }
+
+    /*!Gets the component of the vector at the given index
+    @index the component to get
+    @return the value of the component*/
+    inline float& operator [](unsigned index) {
+
+        //check that the index is within bounds
+        if (index > 2) {
+
+            util::ex::IndexOutOfBoundsException("index is greater than 2.");
+        }
+
+        switch (index) {
+
+            case 0: {
+
+                return x;
+            }
+            case 1: {
+
+                return y;
+            }
+            default: {
+
+                return z;
+            }
+        }
+    }
+
+    /*!Gets the component of the vector at the given index
+    @index the component to get
+    @return the value of the component*/
+    inline const float& operator [](unsigned index) const {
+
+        //check that the index is within bounds
+        if (index > 2) {
+
+            util::ex::IndexOutOfBoundsException("index is greater than 2.");
+        }
+
+        switch (index) {
+
+            case 0: {
+
+                return x;
+            }
+            case 1: {
+
+                return y;
+            }
+            default: {
+
+                return z;
+            }
+        }
+    }
+
+    /*!@return a copy of the vector which has been negated*/
+    inline Vector3 operator -() const {
+
+        return Vector3(-x, -y, -z);
+    }
+
+    /*!Creates a new vector as the result of the addition of the components
+    of this vector with the given scalar
+    @scalar the scalar to add
+    @return the result of the addition*/
+    inline Vector3 operator +(float scalar) const {
+
+        return Vector3(x + scalar, y + scalar, z + scalar);
+    }
+
+    /*!Adds the given scalar to the components of this vector
+    @scalar the scalar to add*/
+    inline void operator +=(float scalar) {
+
+        x += scalar;
+        y += scalar;
+        z += scalar;
+    }
+
+    /*!Creates a new vector as the result of the addition of this vector
+    and the other given vector
+    @other the vector to add to this
+    @return the result of the addition*/
+    inline Vector3 operator +(const Vector3& other) const {
+
+        return Vector3(x + other.x, y + other.y, z + other.z);
+    }
+
+    /*!Adds the given vector to this vector
+    @other the vector to add to this*/
+    inline void operator +=(const Vector3& other) {
+
+        x += other.x;
+        y += other.y;
+        z += other.z;
+    }
+
+    /*!Creates a new vector as the result of the subtraction of the
+    scalar from the components of this vector
+    @scalar the scalar to subtract from the components
+    @return the result of the subtraction*/
+    inline Vector3 operator -(float scalar) const {
+
+        return Vector3(x - scalar, y - scalar, z - scalar);
+    }
+
+    /*!Subtracts the given scalar from the components of this vector
+    @scalar the scalar to subtract from the components*/
+    inline void operator -=(float scalar) {
+
+        x -= scalar;
+        y -= scalar;
+        z -= scalar;
+    }
+
+    /*!Creates a new vector as the result of the subtraction of the
+    given vector from this vector
+    @other the vector to subtract from this
+    @return the result of the subtraction*/
+    inline Vector3 operator -(const Vector3& other) const {
+
+        return Vector3(x - other.x, y - other.y, z - other.z);
+    }
+
+    /*!Subtracts the given vector from this vector
+    @other the vector to subtract from this*/
+    inline void operator -=(const Vector3& other) {
+
+        x -= other.x;
+        y -= other.y;
+        z -= other.z;
+    }
+
+    /*!Creates a new vector as the result of the multiplication of the
+    components of this vector by the given scalar
+    @scalar the scalar to multiply the components by
+    @return the result of the multiplication*/
+    inline Vector3 operator *(float scalar) const {
+
+        return Vector3(x * scalar, y * scalar, z * scalar);
+    }
+
+    /*!Multiplies the components of this vector by the given scalar
+    @scalar the scalar to multiply the components by*/
+    inline void operator *=(float scalar) {
+
+        x *= scalar;
+        y *= scalar;
+        z *= scalar;
+    }
+
+    /*!Creates a new vector as the result of the division of the
+    components of this vector by the given scalar
+    @scalar the scalar to divide the components by
+    @return the result of the division*/
+    inline Vector3 operator /(float scalar) const {
+
+        return Vector3(x / scalar, y / scalar, z / scalar);
+    }
+
+    /*!Divides the components of this vector by the given scalar
+    @scalar the scalar to divide the components by*/
+    inline void operator /=(float scalar) {
+
+        x /= scalar;
+        y /= scalar;
+        z /= scalar;
+    }
+
+    //PUBLIC MEMBER FUNCTIONS
 };
 
 } } //util //vec
