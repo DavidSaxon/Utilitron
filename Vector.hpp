@@ -258,6 +258,24 @@ public:
 
         return Vector2(x, y);
     }
+
+    /*!@return the zero two dimensional vector*/
+    inline static Vector2 zero() {
+
+        return Vector2(0, 0);
+    }
+
+    /*!@return the x axis vector*/
+    inline static Vector2 xAxis() {
+
+        return Vector2(1, 0);
+    }
+
+    /*!@return the x axis vector*/
+    inline static Vector2 yAxis() {
+
+        return Vector2(0, 1);
+    }
 };
 
 //Vector3 TODO:
