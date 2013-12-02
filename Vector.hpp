@@ -1268,6 +1268,139 @@ public:
     }
 };
 
+//VECTOR MATH FUNCTIONS
+/*!Computes the magnitude of the given vector
+@v the vector to compute the magnitude
+@return the magnitude*/
+inline float magnitude(const Vector2& v) {
+
+    return sqrt((v.x * v.x) + (v.y * v.y));
+}
+
+/*!Computes the magnitude of the given vector
+@v the vector to compute the magnitude
+@return the magnitude*/
+inline float magnitude(const Vector3& v) {
+
+    return sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z));
+}
+
+/*!Computes the magnitude of the given vector
+@v the vector to compute the magnitude
+@return the magnitude*/
+inline float magnitude(const Vector4& v) {
+
+    return sqrt((v.x * v.x) + (v.y * v.y) + (v.z * v.z) + (v.w + v.w));
+}
+
+/*!Computes a normalised version of the given vector
+@v the vector to normalise
+@return the normalised vector*/
+inline Vector2 normalise(const Vector2& v) {
+
+    float mag = magnitude(v);
+
+    return Vector2(v.x / mag, v.y / mag);
+}
+
+/*!Computes a normalised version of the given vector
+@v the vector to normalise
+@return the normalised vector*/
+inline Vector3 normalise(const Vector3& v) {
+
+    float mag = magnitude(v);
+
+    return Vector3(v.x / mag, v.y / mag, v.z / mag);
+}
+
+/*!Computes a normalised version of the given vector
+@v the vector to normalise
+@return the normalised vector*/
+inline Vector4 normalise(const Vector4& v) {
+
+    float mag = magnitude(v);
+
+    return Vector4(v.x / mag, v.y / mag, v.z / mag, v.w / mag);
+}
+
+/*!Computes the dot product of the two given vectors
+@a the first vector
+@b the second vector
+@return the result of dot product*/
+inline float dot(const Vector2& a, const Vector2& b) {
+
+    return (a.x * b.x) + (a.y * b.y);
+}
+
+/*!Computes the dot product of the two given vectors
+@a the first vector
+@b the second vector
+@return the result of dot product*/
+inline float dot(const Vector3& a, const Vector3& b) {
+
+    return (a.x * b.x) + (a.y * b.y) * (a.z * b.z);
+}
+
+/*!Computes the dot product of the two given vectors
+@a the first vector
+@b the second vector
+@return the result of dot product*/
+inline float dot(const Vector4& a, const Vector4& b) {
+
+    return (a.x * b.x) + (a.y * b.y) + (a.z * b.z) + (a.w * b.w);
+}
+
+/*!Computes the cross product of the two given vectors
+@a the first vector
+@b the second vector
+@return the result of cross product*/
+inline Vector3 cross(const Vector3& a, const Vector3& b) {
+
+    //the cross product values
+    float cx = (a.y * b.z) - (a.z * b.y);
+    float cy = (a.x * b.z) - (a.z * b.x);
+    float cz = (a.x * b.y) - (a.y * b.x);
+
+    return Vector3(cx, cy, cz);
+}
+
+/*!Calculates the distance between the two vectors
+@a the first vector
+@b the second vector
+@return the distance between the vectors*/
+inline float distance(const Vector2& a, const Vector2& b) {
+
+    return sqrt(pow(a.x - b.x, 2.0f) + pow(a.y - b.y, 2.0f));
+}
+
+/*!@Calculates the distance between the two vectors
+@a the first vector
+@b the second vector
+@return the distance between the vectors*/
+inline float distance(const Vector3& a, const Vector3& b) {
+
+    return sqrt(pow(a.x - b.x, 2.0f) + pow(a.y - b.y, 2.0f) +
+        pow(a.z - b.z, 2.0f));
+}
+
+/*!@Calculates the distance between the two vectors
+@a the first vector
+@b the second vector
+@return the distance between the vectors*/
+inline float distance(const Vector4& a, const Vector4& b) {
+
+    return sqrt(pow(a.x - b.x, 2.0f) + pow(a.y - b.y, 2.0f) +
+        pow(a.z - b.z, 2.0f) + pow(a.w - b.w, 2.0f));
+}
+
+/*!@return the angle between the two vectors
+@a the first vector
+@b the second vector
+@return the angle between the vectors*/
+inline float angleBetween(const Vector2& a, const Vector2& b) {
+
+    return (-1.0f * atan2(a.y - b.y, a.x - b.x));
+}
 
 } } //util //vec
 
