@@ -1,8 +1,9 @@
 #ifndef UTILITRON_VECTOR_VECTOR_H_
 #   define UTILITRON_VECTOR_VECTOR_H_
 
-#include <iostream>
 #include <cmath>
+#include <iostream>
+#include <sstream>
 
 #include "exceptions/ArrayException.hpp"
 
@@ -13,8 +14,27 @@ namespace util {
 \****************************************************************/
 namespace vec {
 
-//Vector2 TODO:
+/**********************************************************************\
+| A two dimensional vector class that provides component access, basic |
+| operators and static constructor functions.                          |
+|                                                                      |
+| @author David Saxon                                                  |
+\**********************************************************************/
 class Vector2 {
+
+    //FRIEND FUNCTIONS
+    /*!Prints the vector to the output stream
+    @output the output stream to print to
+    @v the vector to print
+    @return the changed output stream*/
+    inline friend std::ostream& operator <<(std::ostream& output,
+        const Vector2& v) {
+
+        output << v.toString();
+
+        return output;
+    }
+
 public:
 
     //VARIABLES
@@ -259,6 +279,15 @@ public:
         return Vector2(x, y);
     }
 
+    /*!@return the vector in string format*/
+    inline std::string toString() const {
+
+        std::stringstream ss;
+        ss << "[ " << x << ", " << y << "]";
+
+        return ss.str();
+    }
+
     /*!@return the zero two dimensional vector*/
     inline static Vector2 zero() {
 
@@ -278,8 +307,27 @@ public:
     }
 };
 
-//Vector3 TODO:
+/************************************************************************\
+| A three dimensional vector class that provides component access, basic |
+| operators and static constructor functions.                            |
+|                                                                        |
+| @author David Saxon                                                    |
+\************************************************************************/
 class Vector3 {
+
+    //FRIEND FUNCTIONS
+    /*!Prints the vector to the output stream
+    @output the output stream to print to
+    @v the vector to print
+    @return the changed output stream*/
+    inline friend std::ostream& operator <<(std::ostream& output,
+        const Vector3& v) {
+
+        output << v.toString();
+
+        return output;
+    }
+
 public:
 
     //VARIABLES
@@ -647,6 +695,15 @@ public:
         return Vector3(0, 0, 0);
     }
 
+    /*!@return the vector in string format*/
+    inline std::string toString() const {
+
+        std::stringstream ss;
+        ss << "[ " << x << ", " << y << ", " << z << "]";
+
+        return ss.str();
+    }
+
     /*!@return the x axis vector*/
     inline static Vector3 xAxis() {
 
@@ -665,6 +722,552 @@ public:
         return Vector3(0, 0, 1);
     }
 };
+
+/***********************************************************************\
+| A four dimensional vector class that provides component access, basic |
+| operators and static constructor functions.                           |
+|                                                                       |
+| @author David Saxon                                                   |
+\***********************************************************************/
+class Vector4 {
+
+    //FRIEND FUNCTIONS
+    /*!Prints the vector to the output stream
+    @output the output stream to print to
+    @v the vector to print
+    @return the changed output stream*/
+    inline friend std::ostream& operator <<(std::ostream& output,
+        const Vector4& v) {
+
+        output << v.toString();
+
+        return output;
+    }
+
+public:
+
+    //VARIABLES
+    //position co-ordinates access components
+    float x;
+    float y;
+    float z;
+    float w;
+
+    //colour access components
+    float& r;
+    float& g;
+    float& b;
+    float& a;
+
+    //measurement access components
+    float& width;
+    float& height;
+    float& depth;
+    float& fourth;
+
+    //CONSTRUCTORS
+    /*!Creates a new four dimensional vector with the given values
+    @aX the x value of the vector
+    @aY the y value of the vector
+    @aZ the z value of the vector
+    @aW the w value of the vector*/
+    inline Vector4(float aX, float aY, float aZ, float aW) :
+        x(aX),
+        y(aY),
+        z(aZ),
+        w(aW),
+        r(x),
+        g(y),
+        b(z),
+        a(w),
+        width(x),
+        height(y),
+        depth(z),
+        fourth(w) {
+    }
+
+    /*!Creates a new four dimensional vector by the copying the values from
+    the given 4d vector
+    @v4 the 4d vector to copy from*/
+    inline Vector4(const Vector4& v4) :
+        x(v4.x),
+        y(v4.y),
+        z(v4.z),
+        w(v4.w),
+        r(x),
+        g(y),
+        b(z),
+        a(w),
+        width(x),
+        height(y),
+        depth(z),
+        fourth(w) {
+    }
+
+    /*!Creates a new four dimensional vector by setting the x and y components
+    from the given 2d vector and sets the z and w components from the
+    given values
+    @v2 the 2d vector to copy from
+    @aZ the z value of the vector
+    @aW the w value of the vector*/
+    inline Vector4(const Vector2& v2, float aZ, float aW) :
+        x(v2.x),
+        y(v2.y),
+        z(aZ),
+        w(aW),
+        r(x),
+        g(y),
+        b(z),
+        a(w),
+        width(x),
+        height(y),
+        depth(z),
+        fourth(w) {
+    }
+
+    /*!Creates a new four dimensional vector by setting the y and z components
+    from the given 2d vector and sets the x and w components from the
+    given values
+    @aX the x value of the vector
+    @v2 the 2d vector to copy from
+    @aW the w value of the vector*/
+    inline Vector4(float aX, const Vector2& v2, float aW) :
+        x(aX),
+        y(v2.x),
+        z(v2.y),
+        w(aW),
+        r(x),
+        g(y),
+        b(z),
+        a(w),
+        width(x),
+        height(y),
+        depth(z),
+        fourth(w) {
+    }
+
+    /*!Creates a new four dimensional vector by setting the z and w components
+    from the given 2d vector and sets the x and y components from the
+    given values
+    @aX the x value of the vector
+    @aY the y value of the vector
+    @v2 the 2d vector to copy from*/
+    inline Vector4(float aX, float aY, const Vector2& v2) :
+        x(aX),
+        y(aY),
+        z(v2.x),
+        w(v2.y),
+        r(x),
+        g(y),
+        b(z),
+        a(w),
+        width(x),
+        height(y),
+        depth(z),
+        fourth(w) {
+    }
+
+    /*!Creates a new four dimensional vector by setting the x and y components
+    from the first 2d vector and the z and w components from the second
+    2d vector
+    @firstV2 the first 2d vector
+    @secondV2 the second 2d vector*/
+    inline Vector4(const Vector2& firstV2, const Vector2& secondV2) :
+        x(firstV2.x),
+        y(firstV2.y),
+        z(secondV2.x),
+        w(secondV2.y),
+        r(x),
+        g(y),
+        b(z),
+        a(w),
+        width(x),
+        height(y),
+        depth(z),
+        fourth(w) {
+    }
+
+    /*!Creates a new four dimensional vector by setting the x, y, and z
+    components from the given 3d vector and sets the w component
+    from the given value
+    @v3 the 3d vector to copy from
+    @aW the w value of the vector*/
+    inline Vector4(const Vector3& v3, float aW) :
+        x(v3.x),
+        y(v3.y),
+        z(v3.z),
+        w(aW),
+        r(x),
+        g(y),
+        b(z),
+        a(w),
+        width(x),
+        height(y),
+        depth(z),
+        fourth(w) {
+    }
+
+    /*!Creates a new four dimensional vector by setting the y, x, and w
+    components from the given 3d vector and sets the x component
+    from the given value
+    @aX the x value of the vector
+    @v3 the 3d vector to copy from*/
+    inline Vector4(float aX, const Vector3& v3) :
+        x(aX),
+        y(v3.x),
+        z(v3.y),
+        w(v3.z),
+        r(x),
+        g(y),
+        b(z),
+        a(w),
+        width(x),
+        height(y),
+        depth(z),
+        fourth(w) {
+    }
+
+    //PUBLIC MEMBER FUNCTIONS
+    /*!@returns a new 2d vector of the x and y components of this vector*/
+    inline Vector2 xy() const {
+
+        return Vector2(x, y);
+    }
+
+    /*!@returns a new 2d vector of the x and z components of this vector*/
+    inline Vector2 xz() const {
+
+        return Vector2(x, z);
+    }
+
+    /*!@returns a new 2d vector of the x and w components of this vector*/
+    inline Vector2 xw() const {
+
+        return Vector2(x, w);
+    }
+
+    /*!@returns a new 2d vector of the y and x components of this vector*/
+    inline Vector2 yx() const {
+
+        return Vector2(y, x);
+    }
+
+    /*!@returns a new 2d vector of the y and z components of this vector*/
+    inline Vector2 yz() const {
+
+        return Vector2(y, z);
+    }
+
+    /*!@returns a new 2d vector of the y and w components of this vector*/
+    inline Vector2 yw() const {
+
+        return Vector2(y, w);
+    }
+
+    /*!@returns a new 2d vector of the z and x components of this vector*/
+    inline Vector2 zx() const {
+
+        return Vector2(z, x);
+    }
+
+    /*!@returns a new 2d vector of the z and y components of this vector*/
+    inline Vector2 zy() const {
+
+        return Vector2(z, y);
+    }
+
+    /*!@returns a new 2d vector of the z and w components of this vector*/
+    inline Vector2 zw() const {
+
+        return Vector2(z, w);
+    }
+
+    /*!@returns a new 3d vector of the x, y, and z components of this vector*/
+    inline Vector3 xyz() const {
+
+        return Vector3(x, y, z);
+    }
+
+    /*!@returns a new 3d vector of the x, y, and w components of this vector*/
+    inline Vector3 xyw() const {
+
+        return Vector3(x, y, w);
+    }
+
+    /*!@returns a new 3d vector of the x, z, and y components of this vector*/
+    inline Vector3 xzy() const {
+
+        return Vector3(x, z, y);
+    }
+
+    /*!@returns a new 3d vector of the x, z, and w components of this vector*/
+    inline Vector3 xzw() const {
+
+        return Vector3(x, z, w);
+    }
+
+    /*!@returns a new 3d vector of the x, w, and y components of this vector*/
+    inline Vector3 xwy() const {
+
+        return Vector3(x, w, y);
+    }
+
+    /*!@returns a new 3d vector of the x, w, and y components of this vector*/
+    inline Vector3 xwz() const {
+
+        return Vector3(x, w, z);
+    }
+
+    /*!@returns a new 3d vector of the y, x, and z components of this vector*/
+    inline Vector3 yxz() const {
+
+        return Vector3(y, x, z);
+    }
+
+    /*!@returns a new 3d vector of the y, x, and w components of this vector*/
+    inline Vector3 yxw() const {
+
+        return Vector3(y, x, w);
+    }
+
+    /*!@returns a new 3d vector of the y, z, and x components of this vector*/
+    inline Vector3 yzx() const {
+
+        return Vector3(y, z, x);
+    }
+
+    /*!@returns a new 3d vector of the y, z, and w components of this vector*/
+    inline Vector3 yzw() const {
+
+        return Vector3(y, z, w);
+    }
+
+    /*!@returns a new 3d vector of the y, w, and x components of this vector*/
+    inline Vector3 ywx() const {
+
+        return Vector3(y, w, x);
+    }
+
+    /*!@returns a new 3d vector of the y, w, and z components of this vector*/
+    inline Vector3 ywz() const {
+
+        return Vector3(y, w, z);
+    }
+
+    /*!@returns a new 3d vector of the z, x, and y components of this vector*/
+    inline Vector3 zxy() const {
+
+        return Vector3(z, x, y);
+    }
+
+    /*!@returns a new 3d vector of the z, x, and w components of this vector*/
+    inline Vector3 zxw() const {
+
+        return Vector3(z, x, w);
+    }
+
+    /*!@returns a new 3d vector of the z, y, and x components of this vector*/
+    inline Vector3 zyx() const {
+
+        return Vector3(z, y, x);
+    }
+
+    /*!@returns a new 3d vector of the z, y, and w components of this vector*/
+    inline Vector3 zyw() const {
+
+        return Vector3(z, y, w);
+    }
+
+    /*!@returns a new 3d vector of the z, w, and x components of this vector*/
+    inline Vector3 zwx() const {
+
+        return Vector3(z, w, x);
+    }
+
+    /*!@returns a new 3d vector of the z, w, and y components of this vector*/
+    inline Vector3 zwy() const {
+
+        return Vector3(z, w, y);
+    }
+
+    /*!@returns a new 3d vector of the w, x, and y components of this vector*/
+    inline Vector3 wxy() const {
+
+        return Vector3(w, x, y);
+    }
+
+    /*!@returns a new 3d vector of the w, x, and z components of this vector*/
+    inline Vector3 wxz() const {
+
+        return Vector3(w, x, z);
+    }
+
+    /*!@returns a new 3d vector of the w, y, and x components of this vector*/
+    inline Vector3 wyx() const {
+
+        return Vector3(w, y, x);
+    }
+
+    /*!@returns a new 3d vector of the w, y, and z components of this vector*/
+    inline Vector3 wyz() const {
+
+        return Vector3(w, y, z);
+    }
+
+    /*!@returns a new 3d vector of the w, z, and x components of this vector*/
+    inline Vector3 wzx() const {
+
+        return Vector3(w, z, x);
+    }
+
+    /*!@returns a new 3d vector of the w, z, and y components of this vector*/
+    inline Vector3 wzy() const {
+
+        return Vector3(w, z, y);
+    }
+
+    /*!@returns a clone of this vector*/
+    inline Vector4 xyzw() const {
+
+        return Vector4(x, y, z, w);
+    }
+
+    /*!@returns a 4d vector with the x, y, w, and z components*/
+    inline Vector4 xywz() const {
+
+        return Vector4(x, y, w, z);
+    }
+
+    /*!@returns a 4d vector with the x, z, y, and w components*/
+    inline Vector4 xzyw() const {
+
+        return Vector4(x, z, y, w);
+    }
+
+    /*!@returns a 4d vector with the x, w, y, and z components*/
+    inline Vector4 xwyz() const {
+
+        return Vector4(x, w, y, z);
+    }
+
+    /*!@returns a 4d vector with the y, x, z, and w components*/
+    inline Vector4 yxzw() const {
+
+        return Vector4(y, x, z, w);
+    }
+
+    /*!@returns a 4d vector with the y, x, w, and z components*/
+    inline Vector4 yxwz() const {
+
+        return Vector4(y, x, w, z);
+    }
+
+    /*!@returns a 4d vector with the y, z, x, and w components*/
+    inline Vector4 yzxw() const {
+
+        return Vector4(y, z, x, w);
+    }
+
+    /*!@returns a 4d vector with the y, z, x, and w components*/
+    inline Vector4 yzwx() const {
+
+        return Vector4(y, z, w, x);
+    }
+
+    /*!@returns a 4d vector with the y, w, x, and z components*/
+    inline Vector4 ywxz() const {
+
+        return Vector4(y, w, x, z);
+    }
+
+    /*!@returns a 4d vector with the y, w, z, and x components*/
+    inline Vector4 ywzx() const {
+
+        return Vector4(y, w, z, x);
+    }
+
+    /*!@returns a 4d vector with the z, x, y, and w components*/
+    inline Vector4 zxyw() const {
+
+        return Vector4(z, x, y, w);
+    }
+
+    /*!@returns a 4d vector with the z, x, w, and y components*/
+    inline Vector4 zxwy() const {
+
+        return Vector4(z, x, y, w);
+    }
+
+    /*!@returns a 4d vector with the z, y, x, and w components*/
+    inline Vector4 zyxw() const {
+
+        return Vector4(z, y, x, w);
+    }
+
+    /*!@returns a 4d vector with the z, y, w, and x components*/
+    inline Vector4 zywx() const {
+
+        return Vector4(z, y, w, x);
+    }
+
+    /*!@returns a 4d vector with the z, w, x, and y components*/
+    inline Vector4 zwxy() const {
+
+        return Vector4(z, y, w, x);
+    }
+
+    /*!@returns a 4d vector with the z, w, y, and x components*/
+    inline Vector4 zwyx() const {
+
+        return Vector4(z, w, y, x);
+    }
+
+    /*!@returns a clone of this vector*/
+    inline Vector4 clone() const {
+
+        return Vector4(x, y, z, w);
+    }
+
+    /*!@return the vector in string format*/
+    inline std::string toString() const {
+
+        std::stringstream ss;
+        ss << "[ " << x << ", " << y << ", " << z <<  ", " << w << "]";
+
+        return ss.str();
+    }
+
+    /*!@return the zero three dimensional vector*/
+    inline static Vector4 zero() {
+
+        return Vector4(0, 0, 0, 0);
+    }
+
+    /*!@return the x axis vector*/
+    inline static Vector4 xAxis() {
+
+        return Vector4(1, 0, 0, 0);
+    }
+
+    /*!@return the y axis vector*/
+    inline static Vector4 yAxis() {
+
+        return Vector4(0, 1, 0, 0);
+    }
+
+    /*!@return the z axis vector*/
+    inline static Vector4 zAxis() {
+
+        return Vector4(0, 0, 1, 0);
+    }
+
+    /*!@return the w axis vector*/
+    inline static Vector4 wAxis() {
+
+        return Vector4(0, 0, 0, 1);
+    }
+};
+
 
 } } //util //vec
 
