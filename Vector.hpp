@@ -51,6 +51,17 @@ public:
     float& height;
 
     //CONSTRUCTORS
+    /*!Creates a new two dimensional vector with components
+    initialised as zero*/
+    inline Vector2() :
+        x(0),
+        y(0),
+        r(x),
+        g(y),
+        width(x),
+        height(y) {
+    }
+
     /*!Creates a new two dimensional vector with the given values
     @aX the x value of the vector
     @aY the y value of the vector*/
@@ -347,6 +358,20 @@ public:
     float& depth;
 
     //CONSTRUCTORS
+    /*!Creates a new three dimensional vector with components
+    initialised as zero*/
+    inline Vector3() :
+        x(0),
+        y(0),
+        z(0),
+        r(x),
+        g(y),
+        b(z),
+        width(x),
+        height(y),
+        depth(z) {
+    }
+
     /*!Creates a new three dimensional vector with the given values
     @aX the x component of the vector
     @aY the y component of the vector
@@ -766,6 +791,23 @@ public:
     float& fourth;
 
     //CONSTRUCTORS
+    /*!Creates a new four dimensional vector with components
+    initialised as zero*/
+    inline Vector4() :
+        x(0),
+        y(0),
+        z(0),
+        w(0),
+        r(x),
+        g(y),
+        b(z),
+        a(w),
+        width(x),
+        height(y),
+        depth(z),
+        fourth(w) {
+    }
+
     /*!Creates a new four dimensional vector with the given values
     @aX the x value of the vector
     @aY the y value of the vector
