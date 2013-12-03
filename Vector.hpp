@@ -969,6 +969,221 @@ public:
         fourth(w) {
     }
 
+    //DESTRUCTOR
+    /*!Destroys this vector*/
+    inline ~Vector4() {
+    }
+
+    //OPERATORS
+    /*!Sets the values of this vector by copying the values from the
+    other given vector
+    @other the vector to copy from*/
+    inline Vector4& operator =(const Vector4& other) {
+
+        x = other.x;
+        y = other.y;
+        z = other.z;
+        w = other.w;
+
+        return *this;
+    }
+
+    /*!@return if this vector and the other given vector are equal*/
+    inline bool operator ==(const Vector4& other) const {
+
+        return x == other.x && y == other.y && z == other.z && w == other.w;
+    }
+
+    /*!@return if this vector and the other given vector are not equal*/
+    inline bool operator !=(const Vector4& other) const {
+
+        return !((*this) == other);
+    }
+
+    /*!Gets the component of the vector at the given index
+    @index the component to get
+    @return the value of the component*/
+    inline float& operator [](unsigned index) {
+
+        //check that the index is within bounds
+        if (index > 3) {
+
+            util::ex::IndexOutOfBoundsException("index is greater than 3.");
+        }
+
+        switch (index) {
+
+            case 0: {
+
+                return x;
+            }
+            case 1: {
+
+                return y;
+            }
+            case 2: {
+
+                return z;
+            }
+            default: {
+
+                return w;
+            }
+        }
+    }
+
+    /*!Gets the component of the vector at the given index
+    @index the component to get
+    @return the value of the component*/
+    inline const float& operator [](unsigned index) const {
+
+        //check that the index is within bounds
+        if (index > 3) {
+
+            util::ex::IndexOutOfBoundsException("index is greater than 3.");
+        }
+
+        switch (index) {
+
+            case 0: {
+
+                return x;
+            }
+            case 1: {
+
+                return y;
+            }
+            case 2: {
+
+                return z;
+            }
+            default: {
+
+                return w;
+            }
+        }
+    }
+
+    /*!@return a copy of the vector which has been negated*/
+    inline Vector4 operator -() const {
+
+        return Vector4(-x, -y, -z, -w);
+    }
+
+    /*!Creates a new vector as the result of the addition of the components
+    of this vector with the given scalar
+    @scalar the scalar to add
+    @return the result of the addition*/
+    inline Vector4 operator +(float scalar) const {
+
+        return Vector4(x + scalar, y + scalar, z + scalar, w + scalar);
+    }
+
+    /*!Adds the given scalar to the components of this vector
+    @scalar the scalar to add*/
+    inline void operator +=(float scalar) {
+
+        x += scalar;
+        y += scalar;
+        z += scalar;
+        w += scalar;
+    }
+
+    /*!Creates a new vector as the result of the addition of this vector
+    and the other given vector
+    @other the vector to add to this
+    @return the result of the addition*/
+    inline Vector4 operator +(const Vector4& other) const {
+
+        return Vector4(x + other.x, y + other.y, z + other.z, w + other.w);
+    }
+
+    /*!Adds the given vector to this vector
+    @other the vector to add to this*/
+    inline void operator +=(const Vector4& other) {
+
+        x += other.x;
+        y += other.y;
+        z += other.z;
+        w += other.w;
+    }
+
+    /*!Creates a new vector as the result of the subtraction of the
+    scalar from the components of this vector
+    @scalar the scalar to subtract from the components
+    @return the result of the subtraction*/
+    inline Vector4 operator -(float scalar) const {
+
+        return Vector4(x - scalar, y - scalar, z - scalar, w - scalar);
+    }
+
+    /*!Subtracts the given scalar from the components of this vector
+    @scalar the scalar to subtract from the components*/
+    inline void operator -=(float scalar) {
+
+        x -= scalar;
+        y -= scalar;
+        z -= scalar;
+        w -= scalar;
+    }
+
+    /*!Creates a new vector as the result of the subtraction of the
+    given vector from this vector
+    @other the vector to subtract from this
+    @return the result of the subtraction*/
+    inline Vector4 operator -(const Vector4& other) const {
+
+        return Vector4(x - other.x, y - other.y, z - other.z, w - other.w);
+    }
+
+    /*!Subtracts the given vector from this vector
+    @other the vector to subtract from this*/
+    inline void operator -=(const Vector4& other) {
+
+        x -= other.x;
+        y -= other.y;
+        z -= other.z;
+        w -= other.w;
+    }
+
+    /*!Creates a new vector as the result of the multiplication of the
+    components of this vector by the given scalar
+    @scalar the scalar to multiply the components by
+    @return the result of the multiplication*/
+    inline Vector4 operator *(float scalar) const {
+
+        return Vector4(x * scalar, y * scalar, z * scalar, w * scalar);
+    }
+
+    /*!Multiplies the components of this vector by the given scalar
+    @scalar the scalar to multiply the components by*/
+    inline void operator *=(float scalar) {
+
+        x *= scalar;
+        y *= scalar;
+        z *= scalar;
+        w *= scalar;
+    }
+
+    /*!Creates a new vector as the result of the division of the
+    components of this vector by the given scalar
+    @scalar the scalar to divide the components by
+    @return the result of the division*/
+    inline Vector4 operator /(float scalar) const {
+
+        return Vector4(x / scalar, y / scalar, z / scalar, w / scalar);
+    }
+
+    /*!Divides the components of this vector by the given scalar
+    @scalar the scalar to divide the components by*/
+    inline void operator /=(float scalar) {
+
+        x /= scalar;
+        y /= scalar;
+        z /= scalar;
+        w /= scalar;
+    }
+
     //PUBLIC MEMBER FUNCTIONS
     /*!@returns a new 2d vector of the x and y components of this vector*/
     inline Vector2 xy() const {
