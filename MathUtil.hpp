@@ -72,7 +72,10 @@ inline bool within(T a, T b, T range) {
     return abs(a - b) <= range;
 }
 
-/*!@Overload*/
+/*!Checks if the two values are within the range of each other.
+@a the first value to compare
+@b the second value to compare
+@range the range to check between the values*/
 template<>
 inline bool within(float a, float b, float range) {
 
@@ -80,7 +83,10 @@ inline bool within(float a, float b, float range) {
     return fabs(a - b) <= range;
 }
 
-/*!@Overload*/
+/*!Checks if the two values are within the range of each other.
+@a the first value to compare
+@b the second value to compare
+@range the range to check between the values*/
 template<>
 inline bool within(double a, double b, double range) {
 
