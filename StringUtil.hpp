@@ -1,9 +1,9 @@
 #ifndef UTILITRON_STRINGUTIL_H_
 #   define UTILITRON_STRINGUTIL_H_
 
-#include <boost/lexical_cast.hpp>
 #include <iostream>
 #include <sstream>
+
 
 namespace util {
 
@@ -12,34 +12,14 @@ namespace util {
 \********************************/
 namespace str {
 
-//FUNCTIONS
-/*!Converts the given value to a string
-@value the value to convert
-@return the string of the value*/
-template<typename T>
-inline std::string convert(T value) {
+//------------------------------------------------------------------------------
+//                                   FUNCTIONS
+//------------------------------------------------------------------------------
 
-    std::string s = boost::lexical_cast<std::string>(value);
-
-    return s;
-}
-
-/*!@Overload*/
-template<>
-inline std::string convert(bool value) {
-
-    if (value) {
-
-        return "true";
-    }
-
-    return "false";
-}
-
-/*!Concantenates the given array of strings into one string
-@strings the strings to concatenate
-@n the number of strings
-@return the result of the concatenation*/
+/**Concatenates an array of strings into one string
+@param strings the array of strings to concatenate
+@param n the number of strings
+@return a new string made from the concatenation*/
 inline std::string concatenate(std::string strings[], unsigned n) {
 
     std::stringstream ss;
@@ -53,9 +33,9 @@ inline std::string concatenate(std::string strings[], unsigned n) {
     return ss.str();
 }
 
-/*!Concatenates the second string in front of the first string
-@a the string to be extended
-@b the string to concatenate on to the front of the other string*/
+/**Concatenates the second string in front of the first string
+@param a the string to be extended
+@param b the string to concatenate on to the front of the other string*/
 inline void concatenateFront(std::string& a, const std::string& b) {
 
     //create a new string stream
@@ -67,9 +47,9 @@ inline void concatenateFront(std::string& a, const std::string& b) {
     a = ss.str();
 }
 
-/*!Concatenates the second string on to the end of the first string
-@a the string to be extended
-@b the string to concatenate on to the end of the other string*/
+/**Concatenates the second string on to the end of the first string
+@param a the string to be extended
+@param b the string to concatenate on to the end of the other string**/
 inline void concatenateBack(std::string& a, const std::string& b) {
 
     //create a new string stream
@@ -81,39 +61,37 @@ inline void concatenateBack(std::string& a, const std::string& b) {
     a = ss.str();
 }
 
-/*!Generates a string containing the given amount of characters
-the given number of times
-@c the character to repeat
-@n the number of times to repeat the character
+/**Generates a string containing a string repeated a given amount of times
+@param str the string to repeat
+@param n the number of times to repeat the character
 @return the generated string*/
-inline std::string generateRepeat(char c, unsigned n) {
+inline std::string generateRepeat(const std::string& str, unsigned n) {
 
-    //create a new character array as the length
-    char* str = new char[n + 1];
-    //fill the array
+    //create a new string stream
+    std::stringstream ss;
     for (unsigned i = 0; i < n; ++i) {
 
-        str[i] = c;
+        ss << str;
     }
-    //add the return character
-    str[n] = '\0';
 
-    //create the string
-    std::string rStr(str);
-    //delete the character array
-    delete str;
-
-    //return
-    return rStr;
+    return ss.str();
 }
 
-/*!Centres the given string so that it occupies that given amount of characters
-@str the string to centre
-@charCount the number of characters to make the string full
-@return the number of lines the string has been made into*/
+//TODO: centre a string on multiple lines
+/**Centres a string so that it occupies a given number of characters. If the
+string is longer than the given number of characters it is split into
+multiple lines
+#WARNING This will not trim white-space from the initial string so any
+proceeding or trailing white-space will be considered part of the string
+to centre.
+#WARNING If the string initially occupies multiple lines each line of the
+string will be centered to occupy the given number of characters.
+@param str the string to centre
+@param charNum the number of characters the string should occupy
+@return the number of lines the string now occupies*/
 inline unsigned centre(std::string& str, unsigned charNum) {
 
-    //TODO: centre a string on multiple lines
+    //TODO: check for new lines (windows too)
 
     //check the length of the string
     if (str.length() < charNum) {
@@ -122,7 +100,7 @@ inline unsigned centre(std::string& str, unsigned charNum) {
         int addLength = charNum - str.length();
 
         //generate the spaces to add
-        std::string whiteSpace = generateRepeat(' ', addLength / 2);
+        std::string whiteSpace = generateRepeat(" ", addLength / 2);
 
         //add the white space to the string
         concatenateFront(str, whiteSpace);
@@ -141,7 +119,7 @@ inline unsigned centre(std::string& str, unsigned charNum) {
         //TODO:
     }
 
-    //if we are equal there is nothing to do
+    //if the string is equal to the number of characters
     return 1;
 }
 

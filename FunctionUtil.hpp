@@ -5,15 +5,18 @@
 
 namespace util {
 
-/*******************************\
-| Utilities relating functions. |
-\*******************************/
+/********************************************************\
+| Utilities used for calling and manipulating functions. |
+\********************************************************/
 namespace func {
 
-//FUNCTIONS
-/*!Calls the given function with no arguments the given number of times
-@function the function to call
-@n the number of times to call the function*/
+//------------------------------------------------------------------------------
+//                                   FUNCTIONS
+//------------------------------------------------------------------------------
+
+/**Calls a function with no parameters a given number of times
+@param function the function to call
+@param n the number of times to call the function*/
 inline void repeatFunction(void (*function)(), unsigned n) {
 
     //call the function in a loop
@@ -23,12 +26,12 @@ inline void repeatFunction(void (*function)(), unsigned n) {
     }
 }
 
-/*!Calls the given function the given number of times passing the function
-the provided argument
-@function the function to call
-@argument the argument to use
-@n the number of times to call the function*/
-inline void repeatFunction(void (*function)(void* v), void* argument, unsigned n) {
+/**Calls a function with one parameter a given number of times
+@param function the function to call
+@param argument the argument to pass to the function
+@param n the number of times to call the function*/
+template <typename T>
+inline void repeatFunction(void (*function)(T a), T argument, unsigned n) {
 
     for (unsigned i = 0; i < n; ++i) {
 
