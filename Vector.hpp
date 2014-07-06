@@ -9,24 +9,25 @@
 
 namespace util {
 
-/****************************************************************\
-| Vectors represented as classes with functions for vector math. |
-\****************************************************************/
+/****************************************\
+| Mutable vector classes and vector math |
+\****************************************/
 namespace vec {
 
-/**********************************************************************\
-| A two dimensional vector class that provides component access, basic |
-| operators and static constructor functions.                          |
-|                                                                      |
-| @author David Saxon                                                  |
-\**********************************************************************/
+/**************************\
+| A two dimensional vector |
+\**************************/
 class Vector2 {
 
-    //FRIEND FUNCTIONS
-    /*!Prints the vector to the output stream
-    @output the output stream to print to
-    @v the vector to print
-    @return the changed output stream*/
+
+    //--------------------------------------------------------------------------
+    //                              FRIEND FUNCTIONS
+    //--------------------------------------------------------------------------
+
+    /*!Prints this vector to the output stream
+    @param output the output steam to print to
+    @param v the vector to print
+    @return the modified output stream*/
     inline friend std::ostream& operator <<(std::ostream& output,
         const Vector2& v) {
 
@@ -38,16 +39,19 @@ class Vector2 {
 public:
 
     //VARIABLES
-    //position co-ordinates access components
+    //!x position access component
     float x;
+    //!y position access component
     float y;
 
-    //colour access components
+    //red colour access component (alias of x)
     float& r;
+    //green colour access component (alias of y)
     float& g;
 
-    //measurement access components
+    ///width measurement access component (alias of x)
     float& width;
+    //height measurement access component (alias of y)
     float& height;
 
     //CONSTRUCTORS
@@ -63,8 +67,8 @@ public:
     }
 
     /*!Creates a new two dimensional vector with the given values
-    @aX the x value of the vector
-    @aY the y value of the vector*/
+    @param aX the x value of the vector
+    @param aY the y value of the vector*/
     inline Vector2(float aX, float aY) :
         x(aX),
         y(aY),
@@ -76,7 +80,7 @@ public:
 
     /*!Creates a new two dimensional vector by the copying the values from
     the given 2d vector
-    @v2 the 2d vector copy from*/
+    @param v2 the 2d vector copy from*/
     inline Vector2(const Vector2& v2) :
         x(v2.x),
         y(v2.y),
